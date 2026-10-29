@@ -112,3 +112,5 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+Assets/Handpainted_Grass_and_Ground_Textures.meta
+Assets/Handpainted_Grass_and_Ground_Textures/
