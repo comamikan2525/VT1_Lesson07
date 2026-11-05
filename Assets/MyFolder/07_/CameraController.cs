@@ -3,65 +3,65 @@ using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
-    // === ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‚ç…§ === //
-    public Transform Target;        // ã‚«ãƒ¡ãƒ©ã®æ³¨è¦–ç‚¹ã¨ãªã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‚ç…§
-    public Transform CameraJoint;   // è·é›¢ã‚’ã¨ã‚‹ãŸã‚ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‚ç…§
-    public Camera Camera;           // ã‚«ãƒ¡ãƒ©ã®å‚ç…§
+    // === ƒIƒuƒWƒFƒNƒg‚ÌQÆ === //
+    public Transform Target;        // ƒJƒƒ‰‚Ì’‹“_‚Æ‚È‚éƒIƒuƒWƒFƒNƒg‚ÌQÆ
+    public Transform CameraJoint;   // ‹——£‚ğ‚Æ‚é‚½‚ß‚ÌƒIƒuƒWƒFƒNƒg‚ÌQÆ
+    public Camera Camera;           // ƒJƒƒ‰‚ÌQÆ
 
-    // === ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å…¥åŠ›ã®å‚ç…§ === //
-    public PlayerInput PlayerInput; // PlayerInput ã®å‚ç…§
+    // === ƒvƒŒƒCƒ„[“ü—Í‚ÌQÆ === //
+    public PlayerInput PlayerInput; // PlayerInput ‚ÌQÆ
 
-    // === ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¨ãªã‚‹å¤‰æ•° === //
-    public Parameters parameter;    // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚¯ãƒ©ã‚¹ã®å‚ç…§
+    // === ƒpƒ‰ƒ[ƒ^‚Æ‚È‚é•Ï” === //
+    public Parameters parameter;    // ƒpƒ‰ƒ[ƒ^ƒNƒ‰ƒX‚ÌQÆ
 
     [System.Serializable]
     public class Parameters
-    {   // [å†…éƒ¨ã‚¯ãƒ©ã‚¹] â€» ã‚¯ãƒ©ã‚¹ã®ä¸­ã§ã‚¯ãƒ©ã‚¹ã‚’å®šç¾©ã™ã‚‹ã€‚
-        public Vector3 Position;        // ã‚«ãƒ¡ãƒ©ã®ä½ç½®
-        public Vector3 Angles;          // ã‚«ãƒ¡ãƒ©ã®è§’åº¦
-        public Vector3 Distance;        // åŸç‚¹ï¼ˆè¦ªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼‰ã‹ã‚‰ã®è·é›¢
-        public float DistanceMin;       // è·é›¢ã®æœ€å°åˆ¶é™
-        public float DistanceMax;       // è·é›¢ã®æœ€å¤§åˆ¶é™
-        public float TiltMin = -90;         // ãƒãƒ«ãƒˆã®æœ€å°å€¤
-        public float TiltMax = 90;          // ãƒãƒ«ãƒˆã®æœ€å¤§å€¤
-        public float CameraIntencity = 1;   // ã‚«ãƒ¡ãƒ©ã®æ“ä½œæ„Ÿåº¦
+    {   // [“à•”ƒNƒ‰ƒX] ¦ ƒNƒ‰ƒX‚Ì’†‚ÅƒNƒ‰ƒX‚ğ’è‹`‚·‚éB
+        public Vector3 Position;        // ƒJƒƒ‰‚ÌˆÊ’u
+        public Vector3 Angles;          // ƒJƒƒ‰‚ÌŠp“x
+        public Vector3 Distance;        // Œ´“_ieƒIƒuƒWƒFƒNƒgj‚©‚ç‚Ì‹——£
+        public float DistanceMin;       // ‹——£‚ÌÅ¬§ŒÀ
+        public float DistanceMax;       // ‹——£‚ÌÅ‘å§ŒÀ
+        public float TiltMin = -90;         // ƒ`ƒ‹ƒg‚ÌÅ¬’l
+        public float TiltMax = 90;          // ƒ`ƒ‹ƒg‚ÌÅ‘å’l
+        public float CameraIntencity = 1;   // ƒJƒƒ‰‚Ì‘€ìŠ´“x
     }
 
 
     void Start()
     {
-        // å…¥åŠ›ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã®ç™»éŒ²
+        // “ü—ÍƒAƒNƒVƒ‡ƒ“‚Ì“o˜^
         InputAction();
     }
 
     void Update()
     {
-        // ã‚«ãƒ¡ãƒ©ã®ç§»å‹•ã‚„å…¥åŠ›ãªã©ã®æ¼”ç®—ã‚’è¡Œã†
-        parameter.Position = Vector3.Lerp(parameter.Position, Target.position, Time.deltaTime * 5);   // æ³¨è¦–ç‚¹ã®ä½ç½®ã‚’ã‚«ãƒ¡ãƒ©ã®ä½ç½®ã«ã™ã‚‹
+        // ƒJƒƒ‰‚ÌˆÚ“®‚â“ü—Í‚È‚Ç‚Ì‰‰Z‚ğs‚¤
+        parameter.Position = Vector3.Lerp(parameter.Position, Target.position, Time.deltaTime * 5);   // ’‹“_‚ÌˆÊ’u‚ğƒJƒƒ‰‚ÌˆÊ’u‚É‚·‚é
 
-        // ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã§è·é›¢å¤‰æ›´
+        // ƒXƒNƒ[ƒ‹‚Å‹——£•ÏX
         var scroll = Mouse.current.scroll.value;
         parameter.Distance.z += scroll.y;
         parameter.Distance.z = Mathf.Clamp(parameter.Distance.z, -5, 0);
 
-        // ã‚«ãƒ¡ãƒ©ã®ãƒãƒ«ãƒˆï¼ˆXè»¸å›è»¢ï¼‰ã«åˆ¶é™ã‚’è¨­ã‘ã‚‹
+        // ƒJƒƒ‰‚Ìƒ`ƒ‹ƒgiX²‰ñ“]j‚É§ŒÀ‚ğİ‚¯‚é
         parameter.Angles.x = Mathf.Clamp(parameter.Angles.x, parameter.TiltMin, parameter.TiltMax);
     }
 
     /// <summary>
-    /// Update ã‚ˆã‚Šã‚‚å¾Œã«å®Ÿè¡Œã•ã‚Œã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
+    /// Update ‚æ‚è‚àŒã‚ÉÀs‚³‚ê‚éƒƒ\ƒbƒh
     /// </summary>
     void LateUpdate()
     {
-        // Updateã§è¨ˆç®—ã—ãŸçµæœã‚’åæ˜ ã™ã‚‹
+        // Update‚ÅŒvZ‚µ‚½Œ‹‰Ê‚ğ”½‰f‚·‚é
 
-        // ã‚«ãƒ¡ãƒ©ã®ä½ç½®ã¨å›è»¢ã‚’æ›´æ–°ã™ã‚‹
+        // ƒJƒƒ‰‚ÌˆÊ’u‚Æ‰ñ“]‚ğXV‚·‚é
         transform.position = parameter.Position;
         transform.eulerAngles = parameter.Angles;
-        // rotation(Quaternionå‹)ã«ç›´æ¥ä»£å…¥ã—ãŸã„å ´åˆğŸ‘‡
+        // rotation(QuaternionŒ^)‚É’¼Ú‘ã“ü‚µ‚½‚¢ê‡
         // transform.rotation = Quaternion.Euler(Angles);
 
-        // æ³¨è¦–ç‚¹ã‹ã‚‰ã®è·é›¢ã‚’æ›´æ–°ã™ã‚‹
+        // ’‹“_‚©‚ç‚Ì‹——£‚ğXV‚·‚é
         CameraJoint.localPosition = parameter.Distance;
     }
 
@@ -69,17 +69,17 @@ public class CameraController : MonoBehaviour
     {
         if(PlayerInput == null)
         {
-            Debug.LogError("PlayerInput ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚");
-            return;     // ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å¼·åˆ¶çµ‚äº†ã•ã›ã‚‹
+            Debug.LogError("PlayerInput ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB");
+            return;     // ƒƒ\ƒbƒh‚ğ‹­§I—¹‚³‚¹‚é
         }
 
-        // Look ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãŒå®Ÿè¡Œã•ã‚ŒãŸã¨ãã®å‡¦ç†ã‚’ç™»éŒ²ã™ã‚‹
+        // Look ƒAƒNƒVƒ‡ƒ“‚ªÀs‚³‚ê‚½‚Æ‚«‚Ìˆ—‚ğ“o˜^‚·‚é
         PlayerInput.actions["Look"].performed += context =>
         {
-            var value = context.ReadValue<Vector2>();   // å…¥åŠ›å€¤ã‚’å–å¾—ã™ã‚‹
-            parameter.Angles.x += value.y * -1 * parameter.CameraIntencity; // ä¸Šä¸‹ã®å›è»¢ã‚’åŠ ç®—ã™ã‚‹
-            parameter.Angles.y += value.x * parameter.CameraIntencity;      // å·¦å³ã®å›è»¢ã‚’åŠ ç®—ã™ã‚‹
+            var value = context.ReadValue<Vector2>();   // “ü—Í’l‚ğæ“¾‚·‚é
+            parameter.Angles.x += value.y * -1 * parameter.CameraIntencity; // ã‰º‚Ì‰ñ“]‚ğ‰ÁZ‚·‚é
+            parameter.Angles.y += value.x * parameter.CameraIntencity;      // ¶‰E‚Ì‰ñ“]‚ğ‰ÁZ‚·‚é
         };
-        PlayerInput.actions["Look"].Enable();   // Look ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚’æœ‰åŠ¹åŒ–ã™ã‚‹
+        PlayerInput.actions["Look"].Enable();   // Look ƒAƒNƒVƒ‡ƒ“‚ğ—LŒø‰»‚·‚é
     }
 }

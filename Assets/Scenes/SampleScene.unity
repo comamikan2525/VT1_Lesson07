@@ -576,7 +576,7 @@ GameObject:
   - component: {fileID: 807200639}
   - component: {fileID: 807200638}
   - component: {fileID: 807200640}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -609,7 +609,7 @@ Transform:
   m_GameObject: {fileID: 807200637}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 477.417, y: 349.078, z: 273.7504}
+  m_LocalPosition: {x: 477.417, y: 350, z: 273.7504}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -642,7 +642,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &832575517
 GameObject:
@@ -741,9 +741,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7670638196022979519, guid: 27908fe6c2e38b643a4034c668292c76, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -7134394785105016132, guid: 27908fe6c2e38b643a4034c668292c76, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -5151492872390713093, guid: 27908fe6c2e38b643a4034c668292c76, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -5069531478518834764, guid: 27908fe6c2e38b643a4034c668292c76, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 27908fe6c2e38b643a4034c668292c76, type: 3}
       propertyPath: m_Name
       value: character-b
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 27908fe6c2e38b643a4034c668292c76, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250163066507786643, guid: 27908fe6c2e38b643a4034c668292c76, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4361710834771507933, guid: 27908fe6c2e38b643a4034c668292c76, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788240856288092216, guid: 27908fe6c2e38b643a4034c668292c76, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8303906797054990637, guid: 27908fe6c2e38b643a4034c668292c76, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8908311948669537042, guid: 27908fe6c2e38b643a4034c668292c76, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -772,7 +812,7 @@ GameObject:
   - component: {fileID: 1586086916}
   - component: {fileID: 1586086915}
   - component: {fileID: 1586086914}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
